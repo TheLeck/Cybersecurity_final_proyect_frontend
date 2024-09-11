@@ -1,10 +1,20 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link :to="{ name: 'login' }">Login</router-link> | 
+    <button class="btn btn-primary" @click="logouting">Logout</button>
   </nav>
   <router-view/>
 </template>
+<script setup>
+    import { logout } from '@/services/auth'
+    import { useRouter } from 'vue-router'
+    const router = useRouter()
+    function logouting(){
+        logout()
+        router.push({ name: 'login' })
+    }
+</script>
 
 <style lang="scss">
 #app {
@@ -14,6 +24,7 @@
   text-align: center;
   color: #2c3e50;
 }
+
 
 nav {
   padding: 30px;
